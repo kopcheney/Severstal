@@ -3,7 +3,6 @@ import sqlite3 as sql
 import sqlite3
 
 def init_db():
-    # Устанавливаем соединение с файлом базы данных
     conn = sql.connect('vet_clinic.db')
     cursor = conn.cursor()
 
@@ -54,14 +53,12 @@ def add_patient(owner_name, owner_phone, pet_name, pet_species, pet_age):
     cursor = conn.cursor()
 
     try:
-        #добавляем владельца
         cursor.execute(
             "INSERT INTO Owners (full_name, phone) VALUES (?, ?)",
             (owner_name, owner_phone)
         )
         owner_id = cursor.lastrowid
 
-        #добавляем питомца
         cursor.execute(
             "INSERT INTO Pets (name, species, age, owner_id) VALUES (?, ?, ?, ?)",
             (pet_name, pet_species, pet_age, owner_id)
@@ -168,7 +165,6 @@ def update_owner_phone(owner_id, new_phone):
 def get_patients_by_phone(phone):
     conn = sql.connect('vet_clinic.db')
     cursor = conn.cursor()
-    # ищем питомцев, объединяя таблицы по ID владельца, фильтруя по телефону
     query = """
     SELECT Pets.id, Pets.name, Pets.species, Owners.full_name
     FROM Pets
@@ -184,7 +180,6 @@ def get_patients_by_phone(phone):
 def get_owner_by_phone(phone):
     conn = sql.connect('vet_clinic.db')
     cursor = conn.cursor()
-    # Ищем владельца по точному совпадению номера
     cursor.execute("SELECT id, full_name FROM Owners WHERE phone = ?", (phone,))
     owner = cursor.fetchone()
     conn.close()
@@ -197,3 +192,4 @@ def get_all_appointments():
     rows = cursor.fetchall()
     conn.close()
     return rows
+
