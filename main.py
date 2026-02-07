@@ -50,7 +50,6 @@ def main():
             print(helper_table)
 
             p_id = input("\nВведите ID питомца из таблицы выше: ")
-            # Небольшая проверка: ввел ли пользователь ID из списка
             valid_ids = [str(p[0]) for p in found_patients]
 
             if p_id not in valid_ids:
@@ -88,7 +87,6 @@ def main():
             print(helper_table)
 
             p_id = input("\nВведите ID питомца из таблицы выше: ")
-            # Небольшая проверка: ввел ли пользователь ID из списка
             valid_ids = [str(p[0]) for p in found_patients]
 
             if p_id not in valid_ids:
@@ -170,7 +168,6 @@ def main():
             print(helper_table)
 
             p_id = input("\nВведите ID питомца из таблицы выше: ")
-            # Небольшая проверка: ввел ли пользователь ID из списка
             valid_ids = [str(p[0]) for p in found_patients]
 
             if p_id not in valid_ids:
@@ -189,3 +186,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
